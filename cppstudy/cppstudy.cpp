@@ -1,19 +1,39 @@
-﻿// cppstudy.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
-
-#include <iostream>
+﻿#include <iostream>
+void memcpy(void* src, void* dst, int length);
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    int number;
+    std::cin >> number;
+    char *src = new char[number];
+    for (int i = 0; i < number; i++) {
+        std::cin >> src[i];
+    }
+    char *dst = new char[number];
+    char t1[8] = { 'b', 'b', 'b', 'b', 'b', 'b', 'b', 'b' };
+
+    memcpy(src, dst, number);
+    //std::cout << "Hello World!\n";
+    for (int i = 0; i < number;i++) {
+        std::cout << src[i] <<", "<<dst[i]<<'\n';
+    }
+    return 0;
+
 }
 
-// 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
-// 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
+void memcpy(void* src, void* dst, int length) {
+    //int size = sizeof(src);
+    char* k = (char * )src;
 
-// 시작을 위한 팁: 
-//   1. [솔루션 탐색기] 창을 사용하여 파일을 추가/관리합니다.
-//   2. [팀 탐색기] 창을 사용하여 소스 제어에 연결합니다.
-//   3. [출력] 창을 사용하여 빌드 출력 및 기타 메시지를 확인합니다.
-//   4. [오류 목록] 창을 사용하여 오류를 봅니다.
-//   5. [프로젝트] > [새 항목 추가]로 이동하여 새 코드 파일을 만들거나, [프로젝트] > [기존 항목 추가]로 이동하여 기존 코드 파일을 프로젝트에 추가합니다.
-//   6. 나중에 이 프로젝트를 다시 열려면 [파일] > [열기] > [프로젝트]로 이동하고 .sln 파일을 선택합니다.
+    char t[8] = { 'a', 'a', 'a', 'a', 'a', 'a', 'a', 'a' };
+
+    char* k2 = (char*)dst;
+
+    char test[2] = {};
+    for (int i = 0; i < length; i++) {
+        k2[i] = k[i];
+    }
+    for (int i = 0; i < 1024; i++) {
+        std::cout << "test["<< i <<"]:" << test[0 - i] << "\n";
+    }
+}
