@@ -1,7 +1,7 @@
 ﻿#include <iostream>
 void memcpy(void* src, void* dst, int length);
 
-int main()
+int maintest()
 {
     int number;
     std::cin >> number;
