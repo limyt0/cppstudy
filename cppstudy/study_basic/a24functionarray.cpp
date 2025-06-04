@@ -10,7 +10,7 @@ int sumArr2(int*, int);
 
 int sumArr3(int*, int*);
 
-int main(){
+int main24(){
     //arr == &arr[0]
     int arr[SIZE] = {1,2,4,8,16,32,64,128};
     //cout << "size of arr " << sizeof arr << endl;

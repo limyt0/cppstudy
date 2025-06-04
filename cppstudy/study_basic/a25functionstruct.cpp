@@ -13,7 +13,7 @@ const int minsPerHr = 60;
 Time sum(Time*, Time*);
 void showTime(Time);
 
-int main(){
+int main25(){
     //함수는 원본 아닌 복사본 대상 작업
     Time day1 = {5, 45};
     Time day2 = {4, 55};
