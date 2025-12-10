@@ -1,26 +1,25 @@
 #include <iostream>
 using namespace std;
 
-int main() {
+class Person {
+public:
+    string name;
+    int age;
 
-    int arr[3] = { 100,200,300 };
+    Person(string n = "Alice", int a = 18) {
+        name = n;
+        age = a;
+    }
 
-    int* p = arr;
+    void display() {
+        cout << "Name: " << name << ", Age: " << age << endl;
+    }
+};
 
-    int(&arr2)[3] = arr;
-
-
-
-    cout << "p = " << p << "(arr[0] 주소)" << endl;
-    cout << "p + 1 =" << p + 1 << "(arr[1] 주소)" << endl;
-    cout << "p + 2 =" << p + 2 << "(arr[2] 주소)" << endl;
-
-    cout << "arr2 = " << arr2[0] << endl;
-    cout << "arr2 + 1 =" << *(arr2 + 1) << endl;
-    cout << "arr2 + 2 =" << arr2[2] << endl;
-
-    cout << "*(p) = " << p[0] << endl;
-    cout << "*(p+1) = " << *(p + 1) << endl;
-    cout << "*(p+21) = " << p[2] << endl;
+int main1209() {
+    Person p1; //기본값 사용
+    Person p2("Bob", 30); //값 지정
+    p1.display();
+    p2.display();
     return 0;
 }
