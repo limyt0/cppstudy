@@ -1,14 +1,38 @@
 #include <iostream>
 using namespace std;
 
+template <typename T>
+
+class Array {
+	T data[100];
+	int size;
+public:
+	Array() : size(0) {}
+	void add(const T& element) {
+		if (size < 100)
+			data[size++] = element;
+	}
+
+	void remove() {
+		if (size > 0)
+			size--;
+	}
+
+	void print() {
+		for (int i = 0; i < size; i++)
+			cout << data[i] << " ";
+		cout << endl;
+	}
+};
+
 int main() {
-    int arr[3] = { 100,200,300 };
+	Array<int> arr;
+	arr.add(10);
+	arr.add(20);
+	arr.add(30);
+	arr.print();
 
-    int* arr2 = arr;
-    //auto arr2 = arr; //이렇게 auto 사용해도 됨.
-
-    cout << "arr2 = " << arr2[0] << endl;
-    cout << "arr2 + 1 =" << *(arr2 + 1) << endl;
-    cout << "arr2 + 2 =" << arr2[2] << endl;
-    return 0;
+	arr.remove();
+	arr.print();
+	return 0;
 }
