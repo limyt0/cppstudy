@@ -1,38 +1,19 @@
 #include <iostream>
+#include <algorithm>
+#include <string>
 using namespace std;
 
-template <typename T>
-
-class Array {
-	T data[100];
-	int size;
-public:
-	Array() : size(0) {}
-	void add(const T& element) {
-		if (size < 100)
-			data[size++] = element;
-	}
-
-	void remove() {
-		if (size > 0)
-			size--;
-	}
-
-	void print() {
-		for (int i = 0; i < size; i++)
-			cout << data[i] << " ";
-		cout << endl;
-	}
-};
-
 int main() {
-	Array<int> arr;
-	arr.add(10);
-	arr.add(20);
-	arr.add(30);
-	arr.print();
+	string str = "hello world";
 
-	arr.remove();
-	arr.print();
+	auto it = find(str.begin(), str.end(), 'o');
+
+	if (it != str.end()) {
+		cout << (it - str.begin()) << endl;
+	}
+	else {
+		cout << "not found" << endl;
+	}
+
 	return 0;
 }
