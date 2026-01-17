@@ -141,6 +141,7 @@
     <ClCompile Include="Test1219.cpp" />
     <ClCompile Include="Test1219_Queue.cpp" />
     <ClCompile Include="Test1219_stack.cpp" />
+    <ClCompile Include="Test1226.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
