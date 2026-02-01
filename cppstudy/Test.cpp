@@ -1,29 +1,41 @@
 #include <iostream>
-#include <vector>
 #include <string>
+#include <algorithm>
+#include <vector>
 using namespace std;
 
 
-string solution(vector<string> seoul) {
-    string answer = "";
-    int n = -1;
-    for (int i = 0; i<seoul.size();i++) 
-    {
-        if (seoul[i] == "Kim")
-        {
-            n = i;
-            break;
-        }
+vector<int> solution(int n, int m) {
+    vector<int> answer;
+    int n1, n2;
+    int min, max;
+    if (n < m) {
+        n1 = n; n2 = m;
     }
-    
-    answer = "±è¼­¹æÀº "+ to_string(n)+"¿¡ ÀÖ´Ù";
+    else {
+        n1 = m; n2 = n;
+    }
+    for (int i = 1; i <= n1; i++)
+    {
+       if (n2 % i == 0 && n1 % i == 0) max = i;
+        
+    }
+    min = (n2 / max) * n1;
+    answer.push_back(max);
+    answer.push_back(min);
     return answer;
 }
-
-
-// Main ÇÔ¼ö
+// Main í•¨ìˆ˜
 int main() {
-    vector<string> a = { "Jane", "Kim" };
-    cout << solution(a) << endl;
+
+    int a;
+    int b;
+    cin >> a >> b;
+    
+    for (int i = 0; i < 2; i++) 
+    {
+        cout << solution(a, b)[i] << endl;
+    }
+
     return 0;
 }
