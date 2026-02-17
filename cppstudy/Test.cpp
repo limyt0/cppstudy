@@ -1,41 +1,42 @@
-#include <iostream>
 #include <string>
-#include <algorithm>
 #include <vector>
+#include <iostream>
+#include <algorithm>
+
 using namespace std;
 
+string solution(vector<string> cards1, vector<string> cards2, vector<string> goal) {
+    string answer = "Yes";
+    reverse(cards1.begin(), cards1.end());
+    reverse(cards2.begin(), cards2.end());
+    for (int i = 0; i < goal.size(); i++) {
 
-vector<int> solution(int n, int m) {
-    vector<int> answer;
-    int n1, n2;
-    int min, max;
-    if (n < m) {
-        n1 = n; n2 = m;
+        if (!cards1.empty() && cards1.back() == goal[i]) {
+                cards1.pop_back();
+        }
+        else if (!cards2.empty() && cards2.back() == goal[i])
+        {
+            cards2.pop_back();
+        }
+        else {
+            answer = "No";
+            break;
+        }
+    
     }
-    else {
-        n1 = m; n2 = n;
-    }
-    for (int i = 1; i <= n1; i++)
-    {
-       if (n2 % i == 0 && n1 % i == 0) max = i;
-        
-    }
-    min = (n2 / max) * n1;
-    answer.push_back(max);
-    answer.push_back(min);
     return answer;
 }
+
 // Main 함수
 int main() {
 
-    int a;
-    int b;
-    cin >> a >> b;
+
+    vector<string> cards1 = { "i", "drink", "water" };
+    vector<string> cards2 = { "want", "to" };
+    vector<string> goal = { "i", "want", "to", "drink", "water" };
+ 
+        cout << solution(cards1, cards2, goal) << endl;
     
-    for (int i = 0; i < 2; i++) 
-    {
-        cout << solution(a, b)[i] << endl;
-    }
 
     return 0;
 }
