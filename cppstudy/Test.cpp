@@ -2,41 +2,42 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include <unordered_map>
+//#include <unordered_map>
+#include <set>
+#include <sstream>
 
 using namespace std;
 
-string solution(vector<string> cards1, vector<string> cards2, vector<string> goal) {
-    string answer = "Yes";
-    reverse(cards1.begin(), cards1.end());
-    reverse(cards2.begin(), cards2.end());
-    for (int i = 0; i < goal.size(); i++) {
-
-        if (!cards1.empty() && cards1.back() == goal[i]) {
-                cards1.pop_back();
-        }
-        else if (!cards2.empty() && cards2.back() == goal[i])
+string solution(string s) {
+    string answer = "";
+    string str;
+    stringstream ss(s);
+    int max = 0;
+    int min = 0;
+    bool isfirst = true;
+    while (ss >> str)
+    {
+        int a = stoi(str);
+        if (isfirst)
         {
-            cards2.pop_back();
+            min = a;
+            max = a;
+            isfirst = false;
         }
-        else {
-            answer = "No";
-            break;
-        }
-    
+        if (a > max) max = a;
+        if (a < min) min = a;
     }
+    answer = to_string(min) + " " + to_string(max);
     return answer;
 }
 
-// Main 함수
 int main() {
-
-
-    vector<string> cards1 = { "i", "drink", "water" };
-    vector<string> cards2 = { "want", "to" };
-    vector<string> goal = { "i", "want", "to", "drink", "water" };
- 
-        cout << solution(cards1, cards2, goal) << endl;
+    string s = "1 2 3 4";
     
 
+
+    cout << solution(s) << endl;
+    
     return 0;
 }
