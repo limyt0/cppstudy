@@ -1,60 +1,53 @@
 #include <vector>
 #include <iostream>
-#include <map>
+#include <queue>
 
 using namespace std;
 
-struct Node {
-    int data;
-    Node* left;
-    Node* right;
-    Node(int val) : data(val), left(nullptr), right(nullptr) {}
-};
+vector<int> topologicalSort(int V, vector<vector<int>>& adj) {
+    vector<int> inDegree(V, 0);
+    for (int u = 0; u < V; u++)
+        for (int v : adj[u])
+            inDegree[v]++;
 
-bool search_bst(Node* cur, int target)
-{
-    if (cur == nullptr) return false;
+    queue<int> q;
+    for (int i = 0; i < V; i++)
+        if (inDegree[i] == 0) q.push(i);
 
-    if (cur->data == target) return true;
-    else if (target < cur->data) 
-    {
-        cout << "L " << endl;
-        return search_bst(cur->left, target);
+    vector<int> result;
+    while (!q.empty()) {
+        int node = q.front(); q.pop();
+        result.push_back(node);
+        for (int next : adj[node]) {
+            inDegree[next]--;
+            if (inDegree[next] == 0) q.push(next);
+        }
     }
-    else
-    {
-        cout << "R " << endl;
-        return search_bst(cur->right, target);
-    }
-}
-
-Node* insert_bst(Node* root, int val)
-{
-    if (root == nullptr) {
-        return new Node(val);
-    }
-
-    if (val < root->data) {
-        root->left = insert_bst(root->left, val);
-    }
-    else {
-        root->right = insert_bst(root->right, val);
-    }
-    return root;
+    return result;
 }
 
 int main() {
-    int N = 7;
-    vector<int> nums = { 3, 4, 2, 8, 9, 7, 1 };
-    int target = 7;
-    Node* root = new Node(3);
-    for (int i : nums)
+
+    int N, M;
+    cin >> N >> M;
+    vector<vector<int>> vec(N);
+    vector<int> inDegree(M, 0);
+    for (int i = 0; i < N; i++) vec.push_back(vector<int>());
+    for (int i = 0; i < M; i++)
     {
-        insert_bst(root, i);
+        int u, v;
+        cin >> u >> v;
+        vec[u].push_back(v);
     }
+   
+    vector<int> order = topologicalSort(M, vec);
 
-    search_bst(root, target);
+    for (int v : order) cout << v << " ";
 
 
+
+    
     return 0;
 }
+
+
